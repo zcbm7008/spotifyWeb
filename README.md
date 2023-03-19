@@ -1,6 +1,7 @@
-# Getting Started with Create React App
+# Spotify Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+-Load Likes track
+-wip
 
 ## Available Scripts
 
