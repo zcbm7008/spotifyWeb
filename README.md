@@ -1,5 +1,5 @@
 # Spotify Project
-##구현할거
+##구현할거 <br>
 -intinity scroll (Intersection Observer API)<br>
 -Info Page <br>
 
