@@ -1,0 +1,14 @@
+
+
+.info{
+    width: 100rem;
+    height : 50rem;
+    z-index : 999;
+
+    position : fixed;
+    top: 10%;
+    left : 50% - 500px;
+
+    background-color: #282C34;
+    transition: 2s;
+}

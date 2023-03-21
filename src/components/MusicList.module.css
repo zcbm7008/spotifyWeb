@@ -1,0 +1,27 @@
+.list {
+    margin-left: auto;
+    margin-right: auto;
+    position : relative;
+    transform : translated3d(0px,0px,0px);
+    transition: 500ms;
+    margin : 0px -6px;
+    max-width: 1320px;
+}
+
+.li {
+    display: inline-block;
+    box-sizing : border-box;
+    vertical-align: top;
+    width : 25%;
+    padding : 0px 5rem;
+    margin-top : 2rem;
+
+}
+
+.ul {
+    list-style: none;
+    padding:0px;
+    margin-top : 0px;
+    margin-bottom: 0px;
+    overflow: hidden;
+}
