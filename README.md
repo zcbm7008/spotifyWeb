@@ -1,7 +1,9 @@
 # Spotify Project
+##구현할거
+-intinity scroll (Intersection Observer API)<br>
+-Info Page <br>
 
--Load Likes track
--wip
+
 
 ## Available Scripts
 
