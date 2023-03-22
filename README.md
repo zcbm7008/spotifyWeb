@@ -1,6 +1,5 @@
 # Spotify Project
 ##구현할거 <br>
--skeleton
 -Info Page <br>
 
 
