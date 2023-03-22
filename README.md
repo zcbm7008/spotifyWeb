@@ -1,6 +1,6 @@
 # Spotify Project
 ##구현할거 <br>
--intinity scroll (Intersection Observer API)<br>
+-skeleton
 -Info Page <br>
 
 
