@@ -18,7 +18,6 @@ function MusicItem(props) {
       key={like.track.id}
     >
       <a href="/">
-        <div className={classes.spinner}></div>
         <div>
           <div className={classes.image}>
             {like.track.album.images.length ? (

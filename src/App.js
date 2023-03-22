@@ -4,6 +4,7 @@ import axios from "axios";
 import MusicList from "./components/MusicList";
 import useStore from "./store/MusicStore";
 import LoadingSpinner from "./components/LoadingSpinner";
+import ItemSkeleton from "./components/ItemSkeleton";
 
 function App() {
   const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
@@ -32,7 +33,7 @@ function App() {
 
   const searchPlayLists = async (e) => {
     if (e) e.preventDefault();
-    console.log(token);
+    setLoading(true);
     const headers = {
       Authorization: `Bearer ${token}`,
     };
@@ -111,13 +112,15 @@ function App() {
         )}
 
         {!token && <h2>Please Login</h2>}
+        <ItemSkeleton />
         {token && (
           <MusicList
             likesList={likes}
             setLastIntersectingItem={setLastIntersectingItem}
+            loading={loading}
           />
         )}
-        <LoadingSpinner />
+        {loading && <LoadingSpinner />}
         {/* <button onClick={searchPlayLists}>Search</button> */}
       </header>
     </div>

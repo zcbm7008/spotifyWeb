@@ -1,0 +1,44 @@
+
+$skeleton-color : #ccc;
+
+
+.card{
+    padding : 1rem 1rem;
+    z-index:1;
+    overflow:hidden;
+    border : 1px solid $skeleton-color;
+    
+}
+
+.image {
+    position : relative;
+    width : 10.625rem;
+    height : 11.063rem;
+    background-color: $skeleton-color;
+    margin-bottom : 0px;
+}
+
+.description{
+    margin: 0px 5px 0 0;
+}
+
+.name{
+    margin-top : 0.5rem;
+    width : 100%;
+    height : 25px;
+    margin-bottom: 0rem;
+    position : relative;
+    white-space: nowrap;
+    background-color :$skeleton-color;
+    overflow: hidden;
+
+}
+
+.artist{
+    margin : 0.4rem 0;
+    width : 100%;
+    height : 16px;
+    background-color :$skeleton-color;
+}
+
+
