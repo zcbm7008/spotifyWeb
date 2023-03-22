@@ -1,14 +1,11 @@
 
-
 .info{
-    width: 100rem;
-    height : 50rem;
-    z-index : 999;
-
-    position : fixed;
-    top: 10%;
-    left : 50% - 500px;
-
-    background-color: #282C34;
-    transition: 2s;
+    margin-left: auto;
+    margin-right: auto;
+    position : relative;
+    transform : translated3d(0px,0px,0px);
+    transition: 500ms;
+    margin : 0px -6px;
+    max-width: 1320px;
+    z-index: 100;
 }

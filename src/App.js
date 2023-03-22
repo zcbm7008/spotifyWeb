@@ -1,9 +1,10 @@
 import "./App.css";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import MusicList from "./components/MusicList";
 import useStore from "./store/MusicStore";
 import LoadingSpinner from "./components/LoadingSpinner";
+import MusicDetail from "./components/MusicDetail";
 
 function App() {
   const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
@@ -11,12 +12,13 @@ function App() {
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
   const SCOPE =
-    "user-read-playback-state user-library-modify user-library-read user-top-read";
+    "user-read-playback-state user-library-modify user-library-read user-top-read playlist-read-collaborative";
 
   const [token, setToken] = useState("");
   const [lastIntersectingItem, setLastIntersectingItem] = useState(null);
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(-1);
 
   const { addMusicList, getMusic } = useStore((state) => state);
   const likes = useStore((state) => state.likeMusicList);
@@ -30,27 +32,37 @@ function App() {
     });
   };
 
-  const searchPlayLists = async (e) => {
-    if (e) e.preventDefault();
-    console.log(token);
-    const headers = {
-      Authorization: `Bearer ${token}`,
-    };
-    try {
-      const { data } = await axios.get("https://api.spotify.com/v1/me/tracks", {
-        headers,
-        params: {
-          offset: page * 20,
-          limit: 20,
-        },
-      });
-      console.log(data);
-      addMusicList("like", data.items);
-    } catch {
-      console.error("fetching error");
-    }
-    setLoading(false);
+  const findIndexHandler = (index) => {
+    setCurrentIndex(index);
   };
+
+  const searchPlayLists = useCallback(
+    async (e) => {
+      if (e) e.preventDefault();
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+      console.log(token);
+      try {
+        const { data } = await axios.get(
+          "https://api.spotify.com/v1/me/tracks",
+          {
+            headers,
+            params: {
+              offset: page * 20,
+              limit: 20,
+            },
+          }
+        );
+        console.log(data);
+        addMusicList("like", data.items);
+      } catch {
+        console.error("fetching error");
+      }
+      setLoading(false);
+    },
+    [token, page, addMusicList]
+  );
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -65,11 +77,13 @@ function App() {
       window.localStorage.setItem("localtoken", localtoken);
       setToken(localtoken);
     }
+
     if (!token && localtoken) {
       setToken(localtoken);
     }
+
     if (token) searchPlayLists();
-  }, [token]);
+  }, [token, searchPlayLists]);
 
   const logout = () => {
     setToken("");
@@ -111,10 +125,12 @@ function App() {
         )}
 
         {!token && <h2>Please Login</h2>}
+        {currentIndex !== -1 && <MusicDetail index={currentIndex} />}
         {token && (
           <MusicList
             likesList={likes}
             setLastIntersectingItem={setLastIntersectingItem}
+            findIndexHandler={findIndexHandler}
           />
         )}
         <LoadingSpinner />
