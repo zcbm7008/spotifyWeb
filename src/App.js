@@ -1,10 +1,12 @@
 import "./App.css";
-import { useCallback, useEffect, useRef, useState } from "react";
-import axios from "axios";
-import MusicList from "./components/MusicList";
+import { useCallback, useEffect, lazy, useState, Suspense } from "react";
 import useStore from "./store/MusicStore";
 import LoadingSpinner from "./components/LoadingSpinner";
-import MusicDetail from "./components/MusicDetail";
+import React from "react";
+import searchPlayLists from "./components/searchPlayLists";
+
+const MusicList = lazy(() => import("./components/MusicList"));
+const MusicDetail = lazy(() => import("./components/MusicDetail"));
 
 function App() {
   const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
@@ -17,10 +19,10 @@ function App() {
   const [token, setToken] = useState("");
   const [lastIntersectingItem, setLastIntersectingItem] = useState(null);
   const [page, setPage] = useState(0);
-  const [loading, setLoading] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(-1);
+  const [isLast, setIsLast] = useState(false);
 
-  const { addMusicList, getMusic } = useStore((state) => state);
+  const { addMusicList } = useStore((state) => state);
   const likes = useStore((state) => state.likeMusicList);
 
   const ioCallback = (entries, io) => {
@@ -36,32 +38,20 @@ function App() {
     setCurrentIndex(index);
   };
 
-  const searchPlayLists = useCallback(
-    async (e) => {
-      if (e) e.preventDefault();
-      const headers = {
-        Authorization: `Bearer ${token}`,
-      };
-      console.log(token);
-      try {
-        const { data } = await axios.get(
-          "https://api.spotify.com/v1/me/tracks",
-          {
-            headers,
-            params: {
-              offset: page * 20,
-              limit: 20,
-            },
-          }
-        );
-        console.log(data);
-        addMusicList("like", data.items);
-      } catch {
-        console.error("fetching error");
-      }
-      setLoading(false);
+  const addLikesList = useCallback(
+    async (token) => {
+      const data = await searchPlayLists({
+        token,
+        url: "https://api.spotify.com/v1/me/tracks",
+        params: {
+          offset: page * 20,
+          limit: 20,
+        },
+      });
+      console.log(data);
+      addMusicList("like", data.items);
     },
-    [token, page, addMusicList]
+    [addMusicList]
   );
 
   useEffect(() => {
@@ -82,8 +72,8 @@ function App() {
       setToken(localtoken);
     }
 
-    if (token) searchPlayLists();
-  }, [token, searchPlayLists]);
+    if (token) addLikesList(token);
+  }, [token, addLikesList]);
 
   const logout = () => {
     setToken("");
@@ -102,7 +92,7 @@ function App() {
 
   useEffect(() => {
     console.log(`page = ${page}`);
-    if (page >= 1) searchPlayLists();
+    if (page >= 1) addLikesList(token);
   }, [page]);
 
   // if (likes.length === 0) {
@@ -125,15 +115,27 @@ function App() {
         )}
 
         {!token && <h2>Please Login</h2>}
-        {currentIndex !== -1 && <MusicDetail index={currentIndex} />}
-        {token && (
-          <MusicList
-            likesList={likes}
-            setLastIntersectingItem={setLastIntersectingItem}
-            findIndexHandler={findIndexHandler}
-          />
+
+        {currentIndex !== -1 && (
+          <Suspense fallback={<div></div>}>
+            <MusicDetail index={currentIndex} />
+          </Suspense>
         )}
-        <LoadingSpinner />
+        {token && (
+          <Suspense
+            fallback={
+              <div>
+                <LoadingSpinner />
+              </div>
+            }
+          >
+            <MusicList
+              likesList={likes}
+              setLastIntersectingItem={setLastIntersectingItem}
+              findIndexHandler={findIndexHandler}
+            />
+          </Suspense>
+        )}
         {/* <button onClick={searchPlayLists}>Search</button> */}
       </header>
     </div>

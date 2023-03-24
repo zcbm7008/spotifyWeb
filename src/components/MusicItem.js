@@ -22,7 +22,12 @@ function MusicItem(props) {
       <a href="/">
         <div className={classes.image}>
           {like.track.album.images.length ? (
-            <img width={"80%"} src={like.track.album.images[0].url} alt="" />
+            <img
+              loading="lazy"
+              width={"80%"}
+              src={like.track.album.images[0].url}
+              alt=""
+            />
           ) : (
             <div>No Image</div>
           )}
