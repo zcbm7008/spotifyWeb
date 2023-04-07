@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const searchPlayLists = async ({ token, url, params }) => {
+const SearchData = async ({ token, url, params }) => {
   const headers = {
     Authorization: `Bearer ${token}`,
   };
@@ -16,4 +16,4 @@ const searchPlayLists = async ({ token, url, params }) => {
   }
 };
 
-export default searchPlayLists;
+export default SearchData;

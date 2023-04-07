@@ -3,6 +3,7 @@ import { create } from "zustand";
 const useStore = create((set, get) => ({
   likeMusicList: [],
   artistList: [],
+  userToken: "",
 
   addMusicList: (action, music) => {
     if (action === "like") {
@@ -23,6 +24,12 @@ const useStore = create((set, get) => ({
         likeMusicList: [...state.artistList, ...artist],
       }));
     }
+  },
+
+  setUserToken: (token) => {
+    set((state) => ({
+      userToken: token,
+    }));
   },
 }));
 
