@@ -1,7 +1,7 @@
 import { useState } from "react";
-import classes from "./MusicItem.module.scss";
+import classes from "./ArtistItem.module.scss";
 
-function MusicItem(props) {
+function ArtistItem(props) {
   const [clicked, setClicked] = useState(false);
   const { like, index, indexClickHandler } = props;
 
@@ -43,4 +43,4 @@ function MusicItem(props) {
   );
 }
 
-export default MusicItem;
+export default ArtistItem;

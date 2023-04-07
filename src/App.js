@@ -4,25 +4,26 @@ import useStore from "./store/MusicStore";
 import LoadingSpinner from "./components/LoadingSpinner";
 import React from "react";
 import searchPlayLists from "./components/searchPlayLists";
+import SideBar from "./components/UI/SideBar";
 
 const MusicList = lazy(() => import("./components/MusicList"));
 const MusicDetail = lazy(() => import("./components/MusicDetail"));
 
-function App() {
-  const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-  const REDIRECT_URI = "http://localhost:3000/callback/";
-  const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
-  const RESPONSE_TYPE = "token";
-  const SCOPE =
-    "user-read-playback-state user-library-modify user-library-read user-top-read playlist-read-collaborative";
+const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
+const REDIRECT_URI = "http://localhost:3000/callback/";
+const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
+const RESPONSE_TYPE = "token";
+const SCOPE =
+  "user-read-playback-state user-library-modify user-library-read user-top-read playlist-read-collaborative";
 
+function App() {
   const [token, setToken] = useState("");
   const [lastIntersectingItem, setLastIntersectingItem] = useState(null);
   const [page, setPage] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(-1);
-  const [isLast, setIsLast] = useState(false);
+  const [showSide, setShowSide] = useState(true);
 
-  const { addMusicList } = useStore((state) => state);
+  const { addMusicList, addArtistList } = useStore((state) => state);
   const likes = useStore((state) => state.likeMusicList);
 
   const ioCallback = (entries, io) => {
@@ -51,7 +52,30 @@ function App() {
       console.log(data);
       addMusicList("like", data.items);
     },
-    [addMusicList]
+    [page]
+  );
+
+  const addTopList = useCallback(
+    async (token) => {
+      const data = await searchPlayLists({
+        token,
+        url: "https://api.spotify.com/v1/me/top/artists",
+      });
+      console.log(data);
+      addArtistList("Top", data.items);
+    },
+    [page]
+  );
+
+  const addFeaturedList = useCallback(
+    async (token) => {
+      const data = await searchPlayLists({
+        token,
+        url: "https://api.spotify.com/v1/browse/featured-playlists",
+      });
+      console.log(data);
+    },
+    [page]
   );
 
   useEffect(() => {
@@ -73,7 +97,7 @@ function App() {
     }
 
     if (token) addLikesList(token);
-  }, [token, addLikesList]);
+  }, [token]);
 
   const logout = () => {
     setToken("");
@@ -93,12 +117,16 @@ function App() {
   useEffect(() => {
     console.log(`page = ${page}`);
     if (page >= 1) addLikesList(token);
-  }, [page]);
+  }, [page, addLikesList, token]);
 
   // if (likes.length === 0) {
   //   token && searchPlayLists();
   //   console.log("loaded");
   // }
+
+  function closeDetailHandler() {
+    setCurrentIndex(-1);
+  }
 
   return (
     <div className="App">
@@ -114,27 +142,36 @@ function App() {
           <button onClick={logout}>Logout</button>
         )}
 
-        {!token && <h2>Please Login</h2>}
+        <SideBar
+          onClose={() => {
+            setShowSide((prev) => !prev);
+          }}
+          showSide={showSide}
+          onClickLikes={addLikesList.bind(null, token)}
+          onClickFeatured={addFeaturedList.bind(null, token)}
+          onClickTop={addTopList.bind(null, token)}
+        />
 
-        {currentIndex !== -1 && (
-          <Suspense fallback={<div></div>}>
-            <MusicDetail index={currentIndex} />
-          </Suspense>
-        )}
+        {!token && <h2>Please Login</h2>}
         {token && (
-          <Suspense
-            fallback={
-              <div>
-                <LoadingSpinner />
-              </div>
-            }
-          >
-            <MusicList
-              likesList={likes}
-              setLastIntersectingItem={setLastIntersectingItem}
-              findIndexHandler={findIndexHandler}
-            />
-          </Suspense>
+          <>
+            <Suspense fallback={<LoadingSpinner />}>
+              <MusicList
+                likesList={likes}
+                setLastIntersectingItem={setLastIntersectingItem}
+                findIndexHandler={findIndexHandler}
+              />
+            </Suspense>
+
+            {currentIndex !== -1 && (
+              <Suspense fallback={<div></div>}>
+                <MusicDetail
+                  index={currentIndex}
+                  onClose={closeDetailHandler}
+                />
+              </Suspense>
+            )}
+          </>
         )}
         {/* <button onClick={searchPlayLists}>Search</button> */}
       </header>

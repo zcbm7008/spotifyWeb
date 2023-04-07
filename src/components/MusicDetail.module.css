@@ -1,11 +1,61 @@
 
 .info{
+    top : 50%;
     margin-left: auto;
     margin-right: auto;
-    position : relative;
+    position : fixed;
     transform : translated3d(0px,0px,0px);
+    background-color: dimgray;
     transition: 500ms;
     margin : 0px -6px;
     max-width: 1320px;
+    height : 100%;
     z-index: 100;
+}
+
+.toggled_info{
+    bottom : 0%;
+    margin-left: auto;
+    margin-right: auto;
+    position : fixed;
+    transform : translated3d(0px,0px,0px);
+    background-color: dimgray;
+    transition: 500ms;
+    margin : 0px -6px;
+    height : 10%;
+    width : 100%;
+    z-index: 100;
+
+}
+
+.exit{
+    top: 0;
+    left : 90%;
+    position: absolute;
+    z-index: 200;
+}
+
+.toggle{
+    top: 0;
+    left : 0%;
+    position: absolute;
+    z-index: 200;
+}
+
+
+.toggled_image{
+    position: absolute;
+    left : 0%;
+}
+
+.detail{
+    margin-top: 1rem;
+    font-size: 1.3rem;
+}
+
+.detail > p{
+    margin : 0.6rem;
+}
+.artists {
+    color : #181818;
 }

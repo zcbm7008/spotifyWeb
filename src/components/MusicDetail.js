@@ -1,21 +1,17 @@
 import classes from "./MusicDetail.module.css";
 import useStore from "../store/MusicStore";
 import Controls from "./Controls";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 function MusicDetail(props) {
+  const [toggle, setToggle] = useState(false);
   const likes = useStore((state) => state.likeMusicList);
   const like = likes[props.index];
   let audio = new Audio(like.track.preview_url);
 
-  const playAudio = (e) => {
-    if (e) e.preventDefault();
-    audio.play();
-  };
-  const pauseAudio = (e) => {
-    e.preventDefault();
-    audio.pause();
-  };
-
+  function toggleChangerHandler() {
+    setToggle((prev) => !prev);
+    console.log(toggle);
+  }
   const controlAudio = (e) => {
     if (e) e.preventDefault();
 
@@ -40,10 +36,25 @@ function MusicDetail(props) {
 
   return (
     <>
-      <div className={classes.info}>
+      <div className={!toggle ? classes.info : classes.toggled_info}>
+        <div>
+          <button onClick={props.onClose} className={classes.exit}>
+            X
+          </button>
+          <button onClick={toggleChangerHandler} className={classes.toggle}>
+            =
+          </button>
+        </div>
         {like.track.album.images.length ? (
-          <a href={like.track.external_urls["spotify"]}>
-            <img width={"15%"} src={like.track.album.images[0].url} alt="" />
+          <a
+            href={like.track.external_urls["spotify"]}
+            className={toggle && classes.toggled_image}
+          >
+            <img
+              width={!toggle ? "40%" : "15%"}
+              src={like.track.album.images[0].url}
+              alt=""
+            />
           </a>
         ) : (
           <div>No Image</div>
@@ -52,9 +63,13 @@ function MusicDetail(props) {
           <Controls controlMusic={controlAudio} isPlaying={!audio.paused} />
           {/* <button onClick={playAudio}>play</button> */}
         </div>
-        <p>{like.track.album.name}</p>
-        <p>{like.track.name}</p>
-        <p>{like.track.artists.map((artist) => artist.name).join(", ")}</p>
+        <div className={classes.detail}>
+          <p>{like.track.album.name}</p>
+          <p>{like.track.name}</p>
+          <p className={classes.artists}>
+            {like.track.artists.map((artist) => artist.name).join(", ")}
+          </p>
+        </div>
       </div>
     </>
   );
