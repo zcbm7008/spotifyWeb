@@ -1,0 +1,7 @@
+.player{
+    top: 0;
+    left : 70%;
+    z-index: 50;
+
+    position: fixed;
+}

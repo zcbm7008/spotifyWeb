@@ -6,13 +6,13 @@ export const useAddLikesList = async (token, page) => {
   const data = await SearchData({
     token,
     url: "https://api.spotify.com/v1/me/tracks",
-    params: {
-      offset: page * 20,
-      limit: 20,
-    },
+    // params: {
+    //   offset: page * 20,
+    //   limit: 20,
+    // },
   });
   console.log(data);
-  addMusicList("like", data.items);
+  addMusicList(data.items, "like");
 };
 
 export const useAddTopList = async (token, page) => {

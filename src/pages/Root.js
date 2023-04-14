@@ -1,16 +1,34 @@
 import { Outlet } from "react-router-dom";
 import SideBar from "../components/UI/SideBar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   useAddLikesList,
   useAddFeaturedList,
   useAddTopList,
 } from "../Util/UserDataFetcher";
 import useStore from "../store/MusicStore";
-
+import { useNavigate } from "react-router-dom";
 function RootLayout() {
+  const navigate = useNavigate();
+  const { setUserToken } = useStore((state) => state);
+
+  function Logout() {
+    setUserToken("");
+    window.localStorage.removeItem("localtoken");
+    navigate("/");
+  }
+
   const token = useStore((state) => state.userToken);
   const [showSide, setShowSide] = useState(true);
+
+  const onCLickLikes = () => {
+    navigate("likes");
+  };
+
+  useEffect(() => {
+    onCLickLikes();
+  }, []);
+
   return (
     <>
       <SideBar
@@ -18,9 +36,10 @@ function RootLayout() {
           setShowSide((prev) => !prev);
         }}
         showSide={showSide}
-        onClickLikes={useAddLikesList.bind(null, token)}
+        onClickLikes={onCLickLikes}
         onClickFeatured={useAddFeaturedList.bind(null, token)}
         onClickTop={useAddTopList.bind(null, token)}
+        onClickLogout={Logout}
       />
       <main>
         <Outlet />

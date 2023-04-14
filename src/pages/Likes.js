@@ -1,15 +1,22 @@
-import { Suspense, lazy, useEffect, useState } from "react";
+import { Suspense, lazy } from "react";
+import SpotifyPlayer from "../components/SpotifyPlayer";
+import { useEffect, useState } from "react";
 import LoadingSpinner from "../components/LoadingSpinner";
 import useStore from "../store/MusicStore";
+import SearchData from "../Util/SearchData";
 
-const MusicList = lazy(() => import("./components/MusicList"));
-const MusicDetail = lazy(() => import("./components/MusicDetail"));
+const MusicList = lazy(() => import("../components/MusicList"));
+const MusicDetail = lazy(() => import("../components/MusicDetail"));
+
+const likes_url = "https://api.spotify.com/v1/me/tracks";
 
 function LikesPage() {
   const [lastIntersectingItem, setLastIntersectingItem] = useState(null);
   const [page, setPage] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(-1);
 
+  const userToken = useStore((state) => state.userToken);
+  const { addMusicList } = useStore((state) => state);
   const likes = useStore((state) => state.likeMusicList);
 
   function closeDetailHandler() {
@@ -26,9 +33,21 @@ function LikesPage() {
   };
 
   useEffect(() => {
-    console.log(`page = ${page}`);
-    if (page >= 1) addLikesList(token);
-  }, [page, addLikesList, token]);
+    async function getData() {
+      const data = await SearchData({
+        token: userToken,
+        url: "https://api.spotify.com/v1/me/tracks",
+        params: {
+          offset: page * 20,
+          limit: 20,
+        },
+      });
+      console.log(data);
+      addMusicList("like", data.items);
+    }
+
+    getData();
+  }, [page]);
 
   const findIndexHandler = (index) => {
     setCurrentIndex(index);
@@ -47,7 +66,6 @@ function LikesPage() {
   return (
     <>
       <h1>Your Likes</h1>
-
       <Suspense fallback={<LoadingSpinner />}>
         <MusicList
           likesList={likes}
@@ -61,6 +79,7 @@ function LikesPage() {
           <MusicDetail index={currentIndex} onClose={closeDetailHandler} />
         </Suspense>
       )}
+      <SpotifyPlayer />
     </>
   );
 }

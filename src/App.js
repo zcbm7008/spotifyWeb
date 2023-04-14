@@ -1,28 +1,41 @@
 import "./App.css";
-import { useEffect, useState } from "react";
 import React from "react";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  RouterProvider,
+  createBrowserRouter,
+  useNavigate,
+} from "react-router-dom";
+import ErrorBoundary from "./Util/ErrorBoundary";
 import RootLayout from "./pages/Root";
 import HomePage from "./pages/Home";
 import Login from "./Util/Login";
+import CallbackHelper from "./Util/CallbackHelper";
+import LikesPage from "./pages/Likes";
+import ListsLayout from "./pages/Lists";
 
 const router = createBrowserRouter([
   {
-    path: "/sign_in",
-    element: <Login />,
-  },
-  {
     path: "/",
-
+    element: <HomePage />,
     children: [
       {
         index: true,
-        element: <HomePage />,
+        path: "sign_in",
+        element: <Login />,
       },
       {
         path: "browse",
-        element: <RootLayout />,
-        children: [{ index: true, element: <></> }],
+        element: [<RootLayout />, <ListsLayout />],
+        children: [
+          {
+            path: "likes",
+            element: <LikesPage />,
+          },
+        ],
+      },
+      {
+        path: "callback",
+        element: <CallbackHelper />,
       },
     ],
   },

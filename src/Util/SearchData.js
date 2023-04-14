@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const SearchData = async ({ token, url, params }) => {
+const SearchData = async ({ url, params = null, token = null }) => {
   const headers = {
     Authorization: `Bearer ${token}`,
   };

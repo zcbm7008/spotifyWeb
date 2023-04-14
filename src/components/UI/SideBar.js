@@ -14,6 +14,7 @@ function SideBar(props) {
             <p onClick={props.onClickLikes}>Likes</p>
             <p onClick={props.onClickFeatured}>Featured</p>
             <p onClick={props.onClickTop}>Top</p>
+            <p onClick={props.onClickLogout}>Logout</p>
           </div>
         </div>
       )}

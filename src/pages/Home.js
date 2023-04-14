@@ -1,21 +1,23 @@
 import { useEffect } from "react";
-import Login from "../Util/Login";
 import useStore from "../store/MusicStore";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 function HomePage() {
   const navigate = useNavigate();
   const token = useStore((state) => state.userToken);
-  console.log(token);
 
   useEffect(() => {
     if (!token) {
       navigate("/sign_in");
+    } else {
+      navigate("/browse");
     }
-  });
+  }, [token]);
 
   return (
     <>
-      <h2>Logiined</h2>
+      <main>
+        <Outlet />
+      </main>
     </>
   );
 }
