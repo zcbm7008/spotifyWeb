@@ -1,7 +1,7 @@
-import CustomPlayLists from "../components/CustomPlayLists";
 import { useEffect } from "react";
 import SearchData from "../Util/SearchData";
 import useStore from "../store/MusicStore";
+import CustomListWindow from "../components/customPlayLists/CustomListWindow";
 
 function ListsLayout() {
   const userToken = useStore((state) => state.userToken);
@@ -20,7 +20,7 @@ function ListsLayout() {
     getData();
   }, []);
 
-  return <CustomPlayLists />;
+  return <CustomListWindow />;
 }
 
 export default ListsLayout;

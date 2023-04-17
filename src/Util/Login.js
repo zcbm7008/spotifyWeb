@@ -7,7 +7,7 @@ const REDIRECT_URI = "http://localhost:3000/callback/";
 const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
 const RESPONSE_TYPE = "token";
 const SCOPE =
-  "user-read-playback-state user-library-modify user-library-read user-top-read playlist-read-collaborative";
+  "playlist-modify-private user-read-playback-state user-library-modify user-library-read playlist-modify-public user-top-read playlist-modify-private playlist-read-collaborative";
 
 function Login() {
   const navigate = useNavigate();

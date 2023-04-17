@@ -18,6 +18,19 @@ const useStore = create((set, get) => ({
       }));
     }
   },
+  setMusicList: (action, music) => {
+    if (action === "like") {
+      set((state) => ({
+        likeMusicList: [music],
+      }));
+    }
+    if (action === "custom") {
+      set((state) => ({
+        customMusicPlayList: [music],
+      }));
+    }
+  },
+
   getMusic: (action) => {
     if (action === "like") {
       return get().likeMusicList;

@@ -1,14 +1,12 @@
 import { Suspense, lazy } from "react";
 import SpotifyPlayer from "../components/SpotifyPlayer";
 import { useEffect, useState } from "react";
-import LoadingSpinner from "../components/LoadingSpinner";
+import LoadingSpinner from "../components/UI/LoadingSpinner";
 import useStore from "../store/MusicStore";
 import SearchData from "../Util/SearchData";
 
 const MusicList = lazy(() => import("../components/MusicList"));
 const MusicDetail = lazy(() => import("../components/MusicDetail"));
-
-const likes_url = "https://api.spotify.com/v1/me/tracks";
 
 function LikesPage() {
   const [lastIntersectingItem, setLastIntersectingItem] = useState(null);

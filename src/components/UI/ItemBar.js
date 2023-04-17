@@ -4,7 +4,7 @@ export default function ItemBar(props) {
   const { item } = props;
   console.log("itmebar" + item);
   return (
-    <div className={classes.bar}>
+    <div className={classes.bar} draggable>
       {item.album.images.length ? (
         <div className={classes.img}>
           <img

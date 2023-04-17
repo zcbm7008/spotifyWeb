@@ -1,5 +1,5 @@
 import { useState } from "react";
-import classes from "./MusicItem.module.scss";
+import classes from "../MusicItem.module.scss";
 
 function CustomListItem(props) {
   const [clicked, setClicked] = useState(false);
