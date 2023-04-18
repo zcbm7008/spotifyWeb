@@ -1,11 +1,11 @@
 import MusicItem from "./MusicItem";
 import classes from "./MusicList.module.css";
 import React, { forwardRef } from "react";
+import DropItem from "./DropItem";
 
 const MusicList = forwardRef((props, ref) => {
   let likes = props.likesList;
   const { setLastIntersectingItem } = props;
-
   React.useImperativeHandle(ref, () => ({
     setLastIntersectingItem,
   }));
@@ -26,16 +26,18 @@ const MusicList = forwardRef((props, ref) => {
                   className={classes.li}
                   ref={setLastIntersectingItem}
                 >
-                  <MusicItem
+                  <DropItem
                     like={el}
+                    id={"item" + index}
                     index={index}
                     indexClickHandler={onClickHandler}
                   />
                 </li>
               ) : (
                 <li key={el.key} className={classes.li}>
-                  <MusicItem
+                  <DropItem
                     like={el}
+                    id={"item" + index}
                     index={index}
                     indexClickHandler={onClickHandler}
                   />{" "}

@@ -12,6 +12,7 @@ import Login from "./Util/Login";
 import CallbackHelper from "./Util/CallbackHelper";
 import LikesPage from "./pages/Likes";
 import ListsLayout from "./pages/Lists";
+import BrowseLayout from "./pages/Browse";
 
 const router = createBrowserRouter([
   {
@@ -25,7 +26,7 @@ const router = createBrowserRouter([
       },
       {
         path: "browse",
-        element: [<RootLayout />, <ListsLayout />],
+        element: [<RootLayout />, <ListsLayout />, <BrowseLayout />],
         children: [
           {
             path: "likes",

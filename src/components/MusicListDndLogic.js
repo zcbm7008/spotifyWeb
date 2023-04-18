@@ -1,15 +1,22 @@
-import useStore from "../../store/MusicStore";
+import useStore from "../store/MusicStore";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import Column from "./Column";
+import MusicList from "./MusicList";
+import classes from "./window.module.css";
 
-export default function CustomListLogic() {
-  const { customMusicPlayList } = useStore((state) => state);
+export default function CustomListLogic(props) {
+  const { likesList, setLastIntersectingItem, findIndexHandler } = props;
+
+  const { customMusicPlayList, likeMusicList } = useStore((state) => state);
+
+  console.log("customlistlogic");
+
   const onDragEnd = (result) => {
     const { destination, source } = result;
 
     if (!destination) {
       return;
     }
+
     if (
       destination.droppableId === source.droppableId &&
       destination.index === source.index
@@ -17,7 +24,7 @@ export default function CustomListLogic() {
       return;
     }
 
-    const start = customMusicPlayList[source.index];
+    const start = likeMusicList[source.index];
     const finish = customMusicPlayList[destination.index];
 
     if (start === finish) {
@@ -28,19 +35,27 @@ export default function CustomListLogic() {
     customMusicPlayList.splice(destination.index, 0, start);
     // setMusicList("custom", customMusicPlayList);
 
+    console.log("dest" + JSON.stringify(destination));
+
     return;
   };
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
+    <div className={classes.likewindow}>
       <Droppable droppableId="all-columns" direction="horizontal" type="column">
         {(provided) => (
           <div {...provided.droppableProps} ref={provided.innerRef}>
-            <Column key="custom_1" tasks={customMusicPlayList}></Column>
+            <h2>ihi</h2>
+            <MusicList
+              likesList={likesList}
+              setLastIntersectingItem={setLastIntersectingItem}
+              findIndexHandler={findIndexHandler}
+              key="like_1"
+            />
             {provided.placeholder}
           </div>
         )}
       </Droppable>
-    </DragDropContext>
+    </div>
   );
 }

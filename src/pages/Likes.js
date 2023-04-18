@@ -5,6 +5,7 @@ import LoadingSpinner from "../components/UI/LoadingSpinner";
 import useStore from "../store/MusicStore";
 import SearchData from "../Util/SearchData";
 
+const MusicListDndLogic = lazy(() => import("../components/MusicListDndLogic"));
 const MusicList = lazy(() => import("../components/MusicList"));
 const MusicDetail = lazy(() => import("../components/MusicDetail"));
 
@@ -14,8 +15,8 @@ function LikesPage() {
   const [currentIndex, setCurrentIndex] = useState(-1);
 
   const userToken = useStore((state) => state.userToken);
-  const { addMusicList } = useStore((state) => state);
   const likes = useStore((state) => state.likeMusicList);
+  const { addMusicList } = useStore((state) => state);
 
   function closeDetailHandler() {
     setCurrentIndex(-1);
@@ -40,7 +41,7 @@ function LikesPage() {
           limit: 20,
         },
       });
-      console.log(data);
+      console.log("likes" + data);
       addMusicList("like", data.items);
     }
 
@@ -65,7 +66,7 @@ function LikesPage() {
     <>
       <h1>Your Likes</h1>
       <Suspense fallback={<LoadingSpinner />}>
-        <MusicList
+        <MusicListDndLogic
           likesList={likes}
           setLastIntersectingItem={setLastIntersectingItem}
           findIndexHandler={findIndexHandler}
@@ -77,7 +78,6 @@ function LikesPage() {
           <MusicDetail index={currentIndex} onClose={closeDetailHandler} />
         </Suspense>
       )}
-      <SpotifyPlayer />
     </>
   );
 }

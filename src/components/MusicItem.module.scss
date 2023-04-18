@@ -109,4 +109,12 @@ $anim-color : #E1EEDD;
     text-overflow: ellipsis;
 }
 
+.box {
+    border : 1px solid black;
+    background-color: antiquewhite;
+}
 
+[data-dragging ='true']{
+
+    background-color : 'black';
+}
