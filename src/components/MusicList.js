@@ -1,4 +1,3 @@
-import MusicItem from "./MusicItem";
 import classes from "./MusicList.module.css";
 import React, { forwardRef } from "react";
 import DropItem from "./DropItem";

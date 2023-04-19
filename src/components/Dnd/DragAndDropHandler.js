@@ -14,8 +14,6 @@ export default function CustomListLogic(props) {
   const { addMusicList } = useStore((state) => state);
   const { customMusicPlayList, likeMusicList } = useStore((state) => state);
 
-  console.log(likeMusicList);
-
   function closeDetailHandler() {
     setCurrentIndex(-1);
   }
@@ -72,18 +70,6 @@ export default function CustomListLogic(props) {
       return;
     }
 
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index !== source.index
-    ) {
-      const start = customMusicPlayList[source.index];
-      const finish = customMusicPlayList[destination.index];
-
-      customMusicPlayList.splice(source.index, 1);
-      customMusicPlayList.splice(destination.index, 0, start);
-      return;
-    }
-
     const start = likeMusicList[source.index];
     const finish = customMusicPlayList[destination.index];
 
@@ -103,18 +89,11 @@ export default function CustomListLogic(props) {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <>
-        <Column key="c_1" id="c_1" tasks={customMusicPlayList} />
+      <Column key="c_1" id="c_1" tasks={customMusicPlayList} />
 
-        <div>---------------</div>
+      <div>---------------</div>
 
-        <Column
-          key="c_2"
-          id="c_2"
-          tasks={likeMusicList}
-          isDropDisabled={true}
-        />
-      </>
+      <Column key="c_2" id="c_2" tasks={likeMusicList} isDropDisabled={true} />
     </DragDropContext>
   );
 }

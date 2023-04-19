@@ -1,10 +1,30 @@
 import { create } from "zustand";
 
 const useStore = create((set, get) => ({
+  musicData: [],
   likeMusicList: [],
   customMusicPlayList: [],
   artistList: [],
   userToken: "",
+
+  setMusicList: (action, music) => {
+    if (action === "like") {
+      set((state) => ({
+        likeMusicList: [music],
+      }));
+    }
+    if (action === "custom") {
+      set((state) => ({
+        customMusicPlayList: [music],
+      }));
+    }
+  },
+
+  setManageMusicLists: (arrays) => {
+    set((state) => ({
+      manageMusicLists: [arrays],
+    }));
+  },
 
   addMusicList: (action, music) => {
     if (action === "like") {
@@ -15,18 +35,6 @@ const useStore = create((set, get) => ({
     if (action === "custom") {
       set((state) => ({
         customMusicPlayList: [...state.customMusicPlayList, ...music],
-      }));
-    }
-  },
-  setMusicList: (action, music) => {
-    if (action === "like") {
-      set((state) => ({
-        likeMusicList: [music],
-      }));
-    }
-    if (action === "custom") {
-      set((state) => ({
-        customMusicPlayList: [music],
       }));
     }
   },

@@ -4,9 +4,13 @@ import CustomListItem from "./CustomListItem";
 import Task from "./Task";
 
 export default function Column(props) {
-  console.log(props.tasks);
+  console.log(props.id);
   return (
-    <Droppable droppableId="column-1" type="task">
+    <Droppable
+      droppableId={`column -${props.id}`}
+      type="task"
+      isDropDisabled={props.isDropDisabled ? true : false}
+    >
       {(provided, snapshot) => (
         <div
           className={classes.Container}
@@ -15,8 +19,8 @@ export default function Column(props) {
         >
           {props.tasks.map((task, index) => (
             <Task
-              key={`t ${index}`}
-              id={`task-${index}`}
+              key={`${props.id} ${index}`}
+              id={`${props.id} task-${index}`}
               task={task}
               index={index}
             ></Task>
