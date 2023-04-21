@@ -1,6 +1,6 @@
 # Spotify Project 
 4/21 
-##Finished <br>
+##Finished
 react-router routing <br>
 state management using zustand <br>
 dnd interaction <br>
