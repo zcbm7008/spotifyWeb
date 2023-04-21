@@ -1,6 +1,15 @@
-# Spotify Project
-##구현할거 <br>
--Info Page <br>
+# Spotify Project 
+4/21 
+##Finished <br>
+react-router routing <br>
+state management using zustand <br>
+dnd interaction <br>
+style layout using flex <br>
+loading custom list, likelist logic<br>
+separate fetching logic<br> 
+
+##TODO
+Separate detailpage logic
 
 
 
