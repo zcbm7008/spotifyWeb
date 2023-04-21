@@ -1,14 +1,14 @@
 # Spotify Project 
 4/21 
-##Finished
-react-router routing <br>
-state management using zustand <br>
-dnd interaction <br>
-style layout using flex <br>
-loading custom list, likelist logic<br>
-separate fetching logic<br> 
+## Finished
+react-router routing \
+state management using zustand \
+dnd interaction \
+style layout using flex \
+loading custom list, likelist logic \
+separate fetching logic \
 
-##TODO
+## TODO
 Separate detailpage logic
 
 
