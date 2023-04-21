@@ -6,10 +6,11 @@ state management using zustand \
 dnd interaction \
 style layout using flex \
 loading custom list, likelist logic \
-separate fetching logic \
+separate fetching logic 
 
 ## TODO
-Separate detailpage logic
+separate detailpage logic \
+make test case \
 
 
 
