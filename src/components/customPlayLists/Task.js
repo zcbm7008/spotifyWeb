@@ -1,6 +1,15 @@
 import { Draggable } from "react-beautiful-dnd";
 import classes from "./Task.module.scss";
 export default function Task(props) {
+  function getStyle(style, snapshot) {
+    if (!snapshot.isDropAnimating) {
+      return style;
+    }
+    return {
+      ...style,
+      transitionDuration: "0.001s",
+    };
+  }
   return (
     <Draggable draggableId={props.id} index={props.index}>
       {(provided, snapshot) => (

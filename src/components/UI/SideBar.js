@@ -10,7 +10,7 @@ function SideBar(props) {
       {props.showSide && (
         <div className={classes.sidebar}>
           <div>hi</div>
-          <div>
+          <div className={classes.menus}>
             <p onClick={props.onClickLikes}>Likes</p>
             <p onClick={props.onClickFeatured}>Featured</p>
             <p onClick={props.onClickTop}>Top</p>

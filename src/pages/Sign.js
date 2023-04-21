@@ -5,9 +5,7 @@ function SignPage() {
   return (
     <>
       <Login />;
-      <main>
-        <Outlet />
-      </main>
+      <Outlet />
     </>
   );
 }

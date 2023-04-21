@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import styled from "styled-components";
 
 export default function DropItem(props) {
+  const { indexClickHandler } = props;
   return (
     <>
       <Draggable draggableId={props.id} index={props.index}>
@@ -22,7 +23,7 @@ export default function DropItem(props) {
                 like={props.like}
                 id={props.id}
                 index={props.index}
-                indexClickHandler={props.onClickHandler}
+                indexClickHandler={indexClickHandler}
                 isDragging={snapshot.isDragging}
               />
             }

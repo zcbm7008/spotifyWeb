@@ -1,36 +1,28 @@
-import { useState } from "react";
 import classes from "./MusicItem.module.scss";
-import { useEffect } from "react";
-import styled from "styled-components";
 
-const Conte = styled.div`
-  border: 1px solid black;
-  padding: 8px;
-  background-color: ${(props) => (props.isDragging ? "lightGreen" : "white")};
-  position: fixed;
-  left: 50%;
-`;
+import Task from "./customPlayLists/Task";
 
 function MusicItem(props) {
-  const [clicked, setClicked] = useState(false);
   const { like, index, indexClickHandler, id } = props;
 
   function onClickHandler(e) {
     e.preventDefault();
-    setClicked(true);
     indexClickHandler(index);
   }
 
   return (
     <div
-      className={`${classes.card} ${clicked && classes.card_hidden} ${
-        classes.focusanim
-      }`}
+      className={`${classes.card} ${classes.focusanim}`}
       onClick={(e) => onClickHandler(e)}
       key={like.track.id}
     >
       {props.isDragging ? (
-        <div>hihi</div>
+        <Task
+          key={`${props.id} ${index}`}
+          id={`${props.id} task-${index}`}
+          task={like}
+          index={index}
+        ></Task>
       ) : (
         <a href="/">
           <div className={classes.image}>

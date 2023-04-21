@@ -1,4 +1,4 @@
-import CustomListLogic from "./CustomListLogic";
+import CustomPlaylistLogic from "./CustomPlaylistLogic";
 import { createPlayList } from "../../Util/SearchData";
 import classes from "./CustomListWindow.module.css";
 import useStore from "../../store/MusicStore";
@@ -23,7 +23,7 @@ export default function CustomListWindow() {
 
   return (
     <div className={classes.customlist}>
-      <CustomListLogic />
+      <CustomPlaylistLogic />
       <button className={classes.button} onClick={onClickHandler}>
         . Create Playlist
       </button>

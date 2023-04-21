@@ -26,11 +26,15 @@ const router = createBrowserRouter([
       },
       {
         path: "browse",
-        element: [<RootLayout />, <ListsLayout />],
+        element: [<RootLayout />],
         children: [
           {
-            path: "likes",
+            index: true,
             element: [<BrowseLayout />],
+          },
+          {
+            path: "likes",
+            element: [],
           },
         ],
       },

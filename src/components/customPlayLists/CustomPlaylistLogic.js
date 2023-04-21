@@ -1,8 +1,11 @@
+import useStore from "../../store/MusicStore";
+import Column from "./Column";
 import { useEffect } from "react";
-import SearchData from "../Util/SearchData";
-import useStore from "../store/MusicStore";
-function ListsLayout() {
+import SearchData from "../../Util/SearchData";
+
+export default function CustomPlaylistLogic(props) {
   const userToken = useStore((state) => state.userToken);
+  const { customMusicPlayList } = useStore((state) => state);
   const { addMusicList } = useStore((state) => state);
   useEffect(() => {
     async function getData() {
@@ -11,12 +14,11 @@ function ListsLayout() {
         token: userToken,
         url: `https://api.spotify.com/v1/playlists/${playlist_id}/tracks`,
       });
-      console.log("custom", data);
       addMusicList("custom", data.items);
     }
-
     getData();
   }, []);
-}
+  console.log("customplaylist" + customMusicPlayList);
 
-export default ListsLayout;
+  return <Column key="c_1" id="c_1" tasks={customMusicPlayList} />;
+}

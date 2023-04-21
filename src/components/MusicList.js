@@ -9,7 +9,7 @@ const MusicList = forwardRef((props, ref) => {
     setLastIntersectingItem,
   }));
 
-  const onClickHandler = (index) => {
+  const indexClickHandler = (index) => {
     props.findIndexHandler(index);
   };
 
@@ -29,7 +29,7 @@ const MusicList = forwardRef((props, ref) => {
                     like={el}
                     id={"item" + index}
                     index={index}
-                    indexClickHandler={onClickHandler}
+                    indexClickHandler={indexClickHandler}
                   />
                 </li>
               ) : (
@@ -38,7 +38,7 @@ const MusicList = forwardRef((props, ref) => {
                     like={el}
                     id={"item" + index}
                     index={index}
-                    indexClickHandler={onClickHandler}
+                    indexClickHandler={indexClickHandler}
                   />{" "}
                 </li>
               )}
