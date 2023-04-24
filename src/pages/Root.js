@@ -31,8 +31,8 @@ function RootLayout() {
 
   return (
     <>
-      <DragAndDropHandler>
-        <div className={classes.browse}>
+      <div className={classes.browse}>
+        <DragAndDropHandler>
           <div className={classes.side_bar}>
             <SideBar
               onClose={() => {
@@ -45,10 +45,9 @@ function RootLayout() {
               onClickLogout={Logout}
             />
           </div>
-
           <Outlet />
-        </div>
-      </DragAndDropHandler>
+        </DragAndDropHandler>
+      </div>
     </>
   );
 }

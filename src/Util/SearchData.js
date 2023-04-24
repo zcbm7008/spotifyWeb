@@ -1,4 +1,8 @@
 import axios from "axios";
+import Login from "./Login";
+
+const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
+const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET;
 
 const SearchData = async ({ url, params = null, token = null }) => {
   const headers = {
@@ -11,8 +15,10 @@ const SearchData = async ({ url, params = null, token = null }) => {
     });
     console.log(data);
     return data;
-  } catch {
+  } catch (error) {
     console.error("fetching error");
+    refreshAuthToken(token);
+    console.log(error);
   }
 };
 
@@ -54,6 +60,31 @@ export async function createPlayList(tracksUri, token, name = "My PlayList") {
     console.log(res);
     return playlist;
   });
+}
+
+export async function refreshAuthToken(token) {
+  let refreshtoken = window.localStorage.getItem("refreshtoken");
+  const url = "https://accounts.spotify.com/api/token";
+  const ah = btoa(CLIENT_ID + ":" + CLIENT_SECRET);
+  let options = {
+    url,
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      Authorization: `Basic ${ah}`,
+    },
+    params: {
+      grant_type: "refresh_token",
+      refresh_token: refreshtoken,
+    },
+  };
+  axios(options)
+    .then((resp) => {
+      console.log("resp", resp.data);
+    })
+    .catch((err) => {
+      console.log("ERR GETTING SPOTIFY ACCESS TOKEN", err);
+    });
 }
 
 export default SearchData;

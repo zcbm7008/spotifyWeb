@@ -11,9 +11,12 @@ export default function BrowseLayout() {
   const { likeMusicList } = useStore((state) => state);
   return (
     <>
-      <DndRemoveZone />
       <div className={classes.list}>
-        <LikesPage />
+        <div className={classes.nav}>
+          <h1 className={classes.nav_menu}>likes</h1>
+          <hr />
+          <Outlet />
+        </div>
       </div>
       <div className={classes.custom}>
         <div className={classes.customfixed}>

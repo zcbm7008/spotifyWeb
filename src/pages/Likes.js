@@ -32,6 +32,7 @@ function LikesPage() {
   };
 
   useEffect(() => {
+    console.log(userToken);
     async function getData() {
       const data = await SearchData({
         token: userToken,
@@ -64,30 +65,27 @@ function LikesPage() {
 
   return (
     <>
-      <div className={classes.list}>
-        <h1>likes</h1>
-        <Suspense fallback={<LoadingSpinner />}>
-          <div>
-            <Droppable
-              droppableId={`column -2`}
-              direction="horizontal"
-              type="task"
-              isDropDisabled="true"
-            >
-              {(provided) => (
-                <div {...provided.droppableProps} ref={provided.innerRef}>
-                  <MusicListDndLogic
-                    likesList={likes}
-                    setLastIntersectingItem={setLastIntersectingItem}
-                    findIndexHandler={findIndexHandler}
-                  />
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-          </div>
-        </Suspense>
-      </div>
+      <Suspense fallback={<LoadingSpinner />}>
+        <div className={classes.list_contents}>
+          <Droppable
+            droppableId={`column -2`}
+            direction="horizontal"
+            type="task"
+            isDropDisabled="true"
+          >
+            {(provided) => (
+              <div {...provided.droppableProps} ref={provided.innerRef}>
+                <MusicListDndLogic
+                  likesList={likes}
+                  setLastIntersectingItem={setLastIntersectingItem}
+                  findIndexHandler={findIndexHandler}
+                />
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </div>
+      </Suspense>
 
       {currentIndex !== -1 && (
         <Suspense fallback={<div></div>}>

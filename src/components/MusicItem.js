@@ -29,7 +29,7 @@ function MusicItem(props) {
             {like.track.album.images.length ? (
               <img
                 loading="lazy"
-                width={"80%"}
+                width={"100%"}
                 src={like.track.album.images[1].url}
                 alt=""
               />

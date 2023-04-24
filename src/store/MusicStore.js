@@ -6,7 +6,6 @@ const useStore = create((set, get) => ({
   customMusicPlayList: [],
   artistList: [],
   userToken: "",
-
   setMusicList: (action, music) => {
     if (action === "like") {
       set((state) => ({

@@ -1,16 +1,23 @@
 
 .info{
-    top : 50%;
+    left : 27.5%;
+    top : 70%;
     margin-left: auto;
     margin-right: auto;
     position : fixed;
     transform : translated3d(0px,0px,0px);
-    background-color: dimgray;
+    background: linear-gradient(to bottom, #B2B2B2 0%, #E9E9E9 100%);
     transition: 500ms;
     margin : 0px -6px;
-    max-width: 1320px;
     height : 100%;
     z-index: 100;
+    border-radius: 5px;
+    display: flex;
+    overflow: hidden;
+    width : 40%;
+    height : 30%;
+    padding-top : 1%;
+    
 }
 
 .toggled_info{
@@ -49,13 +56,42 @@
 }
 
 .detail{
-    margin-top: 1rem;
     font-size: 1.3rem;
 }
 
-.detail > p{
-    margin : 0.6rem;
+.image{
+    width : 30%;
+    margin : 1rem;
+    margin-top :0;
+    display: inline-block;
+    font-size: 0;
 }
-.artists {
-    color : #181818;
+
+.moreinfo{
+    margin : 0;
+    margin-left : 0.5rem;
+    display: inline-block;
+    
+}
+
+.track_name{
+    font-size: 2.8rem;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.0;
+}
+
+.album_name{
+    font-size: 1.3rem;
+    color : rgb(24,24,24);
+    font-weight: 400;
+    margin:0;
+    margin-top:0.4rem;
+}
+
+.artist_name{
+    font-size: 1.6rem;
+    color : rgb(24,24,24);
+    margin-top: 0.7rem;
+    font-weight: 400;
 }

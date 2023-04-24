@@ -29,12 +29,13 @@ const router = createBrowserRouter([
         element: [<RootLayout />],
         children: [
           {
-            index: true,
             element: [<BrowseLayout />],
-          },
-          {
-            path: "likes",
-            element: [],
+            children: [
+              {
+                path: "likes",
+                element: [<LikesPage />],
+              },
+            ],
           },
         ],
       },
@@ -47,7 +48,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <div className="App">
+      <RouterProvider router={router} />
+    </div>
+  );
 }
 
 export default App;

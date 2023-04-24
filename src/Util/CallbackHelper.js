@@ -11,14 +11,16 @@ function CallbackHelper() {
   useEffect(() => {
     const hash = window.location.hash;
     let localtoken = window.localStorage.getItem("localtoken");
-
+    let refreshtoken = window.localStorage.getItem("refreshtoken");
     if (!token && !localtoken && hash) {
       let urlParams = new URLSearchParams(
         window.location.hash.replace("#", "?")
       );
       localtoken = urlParams.get("access_token");
+      refreshtoken = urlParams.get("refresh_token");
       window.location.hash = "";
       window.localStorage.setItem("localtoken", localtoken);
+      window.localStorage.setItem("refreshtoken", refreshtoken);
       setUserToken(localtoken);
     }
 
