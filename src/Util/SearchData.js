@@ -17,7 +17,7 @@ const SearchData = async ({ url, params = null, token = null }) => {
     return data;
   } catch (error) {
     console.error("fetching error");
-    refreshAuthToken(token);
+    refreshAuthToken();
     console.log(error);
   }
 };
@@ -62,29 +62,9 @@ export async function createPlayList(tracksUri, token, name = "My PlayList") {
   });
 }
 
-export async function refreshAuthToken(token) {
-  let refreshtoken = window.localStorage.getItem("refreshtoken");
-  const url = "https://accounts.spotify.com/api/token";
-  const ah = btoa(CLIENT_ID + ":" + CLIENT_SECRET);
-  let options = {
-    url,
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-      Authorization: `Basic ${ah}`,
-    },
-    params: {
-      grant_type: "refresh_token",
-      refresh_token: refreshtoken,
-    },
-  };
-  axios(options)
-    .then((resp) => {
-      console.log("resp", resp.data);
-    })
-    .catch((err) => {
-      console.log("ERR GETTING SPOTIFY ACCESS TOKEN", err);
-    });
+export async function refreshAuthToken() {
+  // const refreshtoken = localStorage.getItem("refreshtoken");
+  // window.location.href = `http://localhost:8080/refresh?${refreshtoken}`;
 }
 
 export default SearchData;

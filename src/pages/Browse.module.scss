@@ -1,3 +1,5 @@
+$sidebar_width : 14%;
+
 .browse {
     width : 100%;
     height : 100vh;
@@ -10,10 +12,21 @@
     position: relative;
     top: 0;
     left : 0;
-    width : 14%;
+    width : $sidebar_width;
     z-index: 100;
     overflow: hidden;
+    transition: width 1s;
     
+}
+
+.side_bar_hidden{
+    position: relative;
+    top: 0;
+    left : 0;
+    width : 0;
+    z-index: 100;
+    overflow: hidden;
+    transition: width 1s;
 }
 
 .list{

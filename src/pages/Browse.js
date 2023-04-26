@@ -4,11 +4,10 @@ import { Outlet } from "react-router-dom";
 import LikesPage from "./Likes";
 import Column from "../components/customPlayLists/Column";
 import useStore from "../store/MusicStore";
-import classes from "./Browse.module.css";
+import classes from "./Browse.module.scss";
 import DndRemoveZone from "../components/Dnd/DndRemoveZone";
 
 export default function BrowseLayout() {
-  const { likeMusicList } = useStore((state) => state);
   return (
     <>
       <div className={classes.list}>

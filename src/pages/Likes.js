@@ -4,7 +4,7 @@ import LoadingSpinner from "../components/UI/LoadingSpinner";
 import useStore from "../store/MusicStore";
 import SearchData from "../Util/SearchData";
 import { Droppable } from "react-beautiful-dnd";
-import classes from "./Browse.module.css";
+import classes from "./Browse.module.scss";
 import MusicDetail from "../components/MusicDetail";
 
 const MusicListDndLogic = lazy(() => import("../components/MusicListDndLogic"));
