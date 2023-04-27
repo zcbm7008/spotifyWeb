@@ -19,6 +19,7 @@ export default function Task(props) {
           {...provided.dragHandleProps}
           ref={provided.innerRef}
           isDragging={snapshot.isDragging}
+          style={{ ...provided.draggableProps.style, ...props.draggableStyle }}
         >
           <div className={classes.track_name}>{props.task.track.name}</div>
           {

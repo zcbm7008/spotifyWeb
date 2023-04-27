@@ -1,9 +1,10 @@
 import classes from "./MusicDetail.module.css";
 import useStore from "../store/MusicStore";
 import Controls from "./Controls";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 function MusicDetail(props) {
   const [toggle, setToggle] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const likes = useStore((state) => state.likeMusicList);
   const like = likes[props.index];
   let audio = new Audio(like.track.preview_url);
@@ -12,16 +13,17 @@ function MusicDetail(props) {
     setToggle((prev) => !prev);
     console.log(toggle);
   }
-  const controlAudio = (e) => {
+
+  const controlAudio = useCallback((e) => {
     if (e) e.preventDefault();
 
     if (!audio.paused) {
       audio.pause();
     } else audio.play();
-  };
+    setIsPlaying((prev) => !prev);
+  }, []);
+
   useEffect(() => {
-    console.log(like);
-    console.log(like.extrenal_urls);
     audio.pause();
     audio.currentTime = 0;
     audio.src = like.track.preview_url;
@@ -69,7 +71,7 @@ function MusicDetail(props) {
             <p className={classes["artist_name"]}>
               {like.track.artists.map((artist) => artist.name).join(", ")}
             </p>
-            <Controls controlMusic={controlAudio} isPlaying={!audio.paused} />
+            <Controls controlMusic={controlAudio} isPlaying={isPlaying} />
           </div>
         </div>
       </div>

@@ -9,25 +9,41 @@ export default function DropItem(props) {
     <>
       <Draggable draggableId={props.id} index={props.index}>
         {(provided, snapshot) => (
-          <div
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-            ref={provided.innerRef}
-            isDragging={snapshot.isDragging}
-          >
-            {
+          <>
+            <div
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+              ref={provided.innerRef}
+              isDragging={snapshot.isDragging}
+              style={{
+                ...provided.draggableProps.style,
+                transform: snapshot.isDragging
+                  ? provided.draggableProps.style?.transform
+                  : "translate(0px, 0px)",
+              }}
+            >
+              {
+                <MusicItem
+                  {...provided.draggableProps}
+                  {...provided.dragHandleProps}
+                  ref={provided.innerRef}
+                  like={props.like}
+                  id={props.id}
+                  index={props.index}
+                  indexClickHandler={indexClickHandler}
+                  isDragging={snapshot.isDragging}
+                />
+              }
+            </div>
+            {snapshot.isDragging && (
               <MusicItem
-                {...provided.draggableProps}
-                {...provided.dragHandleProps}
-                ref={provided.innerRef}
+                style={{ transform: "none" }}
                 like={props.like}
                 id={props.id}
-                index={props.index}
-                indexClickHandler={indexClickHandler}
-                isDragging={snapshot.isDragging}
+                isDragging={false}
               />
-            }
-          </div>
+            )}
+          </>
         )}
       </Draggable>
     </>

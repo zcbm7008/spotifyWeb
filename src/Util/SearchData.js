@@ -17,6 +17,7 @@ const SearchData = async ({ url, params = null, token = null }) => {
     return data;
   } catch (error) {
     console.error("fetching error");
+    window.location.href = "http://localhost:8080/getcode";
     refreshAuthToken();
     console.log(error);
   }

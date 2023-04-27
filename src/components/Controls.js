@@ -1,13 +1,10 @@
 import classes from "./Controls.module.css";
 
 const Controls = (props) => {
+  console.log(props.isPlaying);
   return (
     <button onClick={props.controlMusic} className={classes.button}>
-      {props.isPlaying ? (
-        <i className="pause icon" />
-      ) : (
-        <i className="play icon" />
-      )}
+      {props.isPlaying ? "■" : "▶"}
     </button>
   );
 };
