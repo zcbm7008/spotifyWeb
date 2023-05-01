@@ -18,6 +18,17 @@ zustand \
 react-beautiful-dnd \
 axios 
 
+주요 기능 : \
+Spotify의 '좋아요 표시한 곡'를 카드로 보여줌. \
+Intersection Observer Api를 사용하여 무한스크롤 구현. \
+'좋아요 표시한 곡' 카드들을 Drag and Drop으로 다른 객체와 상호작용 가능. \
+Custom PlayList 제작.
+
+만들 기능 : \
+Spotify 추천곡 불러오기 \
+노래 재생(premium필요함) \
+
+
 
 4/26
 ## Finished
