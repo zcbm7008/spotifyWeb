@@ -1,0 +1,38 @@
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 12%;
+    background-color: rgb(0, 0, 0);
+    transition: transform 1s;
+    transform: translateX(0);
+}
+
+.hide{
+    transform: translateX(-100%);
+}
+
+.toggle{
+    top: 0;
+    left : 0%;
+    position: fixed;
+    z-index: 200;
+}
+
+.menus{
+    margin-left: 1.8rem;
+    font-size: 25px;
+    position: fixed;
+    cursor:pointer;
+    color : rgb(170,170,170);
+    
+}
+.menus> p:hover{
+    color : white;
+    transition: color 0.3s ease;
+}
+
+
+
+  

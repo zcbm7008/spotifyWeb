@@ -1,0 +1,16 @@
+.Container {
+    overflow: scroll;
+    height : 500px;
+    width : 500px;
+    z-index : 50;
+    border : 3px solid black;
+    color : black;
+    border-radius: 5px;
+    box-shadow: 1px 2px 3px 1px rgba(20,20,20,0.4); 
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none;
+}
+
+.Container::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리, 오페라, 엣지 */
+}

@@ -1,0 +1,36 @@
+.task {
+  position: relative;
+  display : flex;
+  flex-direction: column;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  padding: 8px;
+  margin-bottom: 8px;
+  height : 50px;
+  overflow: hidden;
+  
+}
+
+.task > .image {
+    position : absolute;
+    object-fit: cover;
+    border-radius: 5px;
+    top : 0%;
+    display: inline;
+    width : 150%;
+    height : 100%;
+    left : 0;
+}
+
+.track_name {
+  margin-top: 0.5rem;
+  vertical-align: center;
+  z-index: 10;
+  top: 50%;
+  color: white;
+  text-align: center;
+  font-size: 25px;
+  width : 100%;
+  background-color:rgba( 0, 0, 0, 0.5 );
+
+}

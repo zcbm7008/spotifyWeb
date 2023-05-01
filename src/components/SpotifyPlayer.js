@@ -1,0 +1,18 @@
+import classes from "./SpotifyPlayer.module.css";
+
+export default function SpotifyPlayer() {
+  return (
+    <div className={classes.player}>
+      <iframe
+        title="Spotify Embed: Recommendation Playlist "
+        src={`https://open.spotify.com/embed/playlist/51bFi9AlJXrz2hDfZOnqXB?utm_source=generator&theme=0`}
+        width="100%"
+        height="100%"
+        style={{ minHeight: "360px", minWidth: "500px" }}
+        frameBorder="0"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+      />
+    </div>
+  );
+}
