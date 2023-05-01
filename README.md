@@ -9,7 +9,7 @@ Spotify Api를 사용하여 Spotify 서버측에 Auth code를 요청하여 Auth 
 따로 서버를 만들어서 Spotify서버와 통신하는 이유는 보안 결함 때문에 유저의 Auth token의 기한이 끝나면 refersh할 때 사용 하는 refresh token을 받지 못하고, 보안에 결함이 있습니다.
 (자세한 내용은 https://developer.spotify.com/documentation/web-api/tutorials/implicit-flow) 
 
-개발언어 : React(프론트), Nodejs(백엔드)
+개발언어 : React(프론트), Nodejs(백엔드) \
 사용 API : https://developer.spotify.com/documentation/web-api
 
 사용 라이브러리 : \
