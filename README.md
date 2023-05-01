@@ -1,6 +1,6 @@
 # Spotify Project 
 
-##상세 정보
+## 상세 정보
 Spotify Api를 사용하여 Spotify 서버측에 Auth code를 요청하여 Auth code를 받고, \
 '좋아요 표시한 곡'페이지에 있는 곡들의 정보들을 받아 카드 리스트로 보여주고, Intersection Observer Api를 사용하여 무한 스크롤을 구현하였습니다. \
 카드를 클릭 시, 곡들의 상세정보와 미리보기가 재생됩니다. \
