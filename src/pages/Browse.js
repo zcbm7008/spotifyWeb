@@ -13,7 +13,7 @@ export default function BrowseLayout() {
       <div className={classes.list}>
         <div className={classes.nav}>
           <h1 className={classes.nav_menu}>likes</h1>
-          <hr />
+
           <Outlet />
         </div>
       </div>

@@ -48,17 +48,22 @@ function MusicDetail(props) {
           </button>
         </div>
         {like.track.album.images.length ? (
-          <div className={classes.image}>
-            <a
-              href={like.track.external_urls["spotify"]}
-              className={toggle && classes.toggled_image}
-            >
-              <img
-                width={!toggle ? "100%" : "15%"}
-                src={like.track.album.images[0].url}
-                alt=""
-              />
-            </a>
+          <div className={classes["image_box"]}>
+            <div className={classes.image}>
+              <a
+                href={like.track.external_urls["spotify"]}
+                className={toggle && classes.toggled_image}
+              >
+                <img
+                  width={!toggle ? "100%" : "15%"}
+                  src={like.track.album.images[0].url}
+                  alt=""
+                />
+              </a>
+            </div>
+            <p className={classes["album_name"]}>
+              from '{like.track.album.name}'
+            </p>
           </div>
         ) : (
           <div>No Image</div>
@@ -67,7 +72,7 @@ function MusicDetail(props) {
           <div>{/* <button onClick={playAudio}>play</button> */}</div>
           <div className={classes.detail}>
             <p className={classes["track_name"]}>{like.track.name}</p>
-            <p className={classes["album_name"]}>{like.track.album.name}</p>
+
             <p className={classes["artist_name"]}>
               {like.track.artists.map((artist) => artist.name).join(", ")}
             </p>
