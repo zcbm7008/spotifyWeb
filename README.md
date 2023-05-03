@@ -45,10 +45,10 @@ design and css \
 make test case \
 
 # 0503 
-##finished 
+## finished 
 main
 
-##TODO
+## TODO
 separate detailpage logic \
 design and css \
 make test case \ 
