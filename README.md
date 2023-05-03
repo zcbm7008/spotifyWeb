@@ -30,7 +30,7 @@ Spotify 추천곡 불러오기 \
 
 
 
-4/26
+# 4/26
 ## Finished
 react-router routing \
 state management using zustand \
@@ -43,3 +43,7 @@ server for auth \
 separate detailpage logic \
 design and css \
 make test case \
+
+# 0503 
+##finished 
+main 
