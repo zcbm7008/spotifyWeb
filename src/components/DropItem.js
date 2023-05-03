@@ -1,7 +1,5 @@
 import { Draggable } from "react-beautiful-dnd";
 import MusicItem from "./MusicItem";
-import { useEffect } from "react";
-import styled from "styled-components";
 
 export default function DropItem(props) {
   const { indexClickHandler } = props;

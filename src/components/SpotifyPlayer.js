@@ -1,11 +1,13 @@
+import { useEffect } from "react";
 import classes from "./SpotifyPlayer.module.css";
 
-export default function SpotifyPlayer() {
-  return (
+export default function SpotifyPlayer(props) {
+  const { playListUrl } = props;
+  return playListUrl ? (
     <div className={classes.player}>
       <iframe
         title="Spotify Embed: Recommendation Playlist "
-        src={`https://open.spotify.com/embed/playlist/51bFi9AlJXrz2hDfZOnqXB?utm_source=generator&theme=0`}
+        src={`https://open.spotify.com/embed/playlist/${playListUrl}?utm_source=generator&theme=0`}
         width="100%"
         height="100%"
         style={{ minHeight: "360px", minWidth: "500px" }}
@@ -14,5 +16,7 @@ export default function SpotifyPlayer() {
         loading="lazy"
       />
     </div>
+  ) : (
+    <div className={classes.skeleton}>Make a playlist to play it here!</div>
   );
 }

@@ -1,27 +1,40 @@
 import classes from "./MusicDetail.module.css";
 import useStore from "../store/MusicStore";
 import Controls from "./Controls";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
+
 function MusicDetail(props) {
   const [toggle, setToggle] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
   const likes = useStore((state) => state.likeMusicList);
   const like = likes[props.index];
-  let audio = new Audio(like.track.preview_url);
+  const audio = useRef(new Audio(like.track.preview_url)).current;
 
   function toggleChangerHandler() {
     setToggle((prev) => !prev);
-    console.log(toggle);
   }
 
-  const controlAudio = useCallback((e) => {
-    if (e) e.preventDefault();
+  const controlAudio = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (isPlaying) {
+        audio.pause();
+      } else {
+        audio.play();
+      }
+      setIsPlaying((prev) => !prev);
+    },
+    [audio, isPlaying]
+  );
 
-    if (!audio.paused) {
-      audio.pause();
-    } else audio.play();
-    setIsPlaying((prev) => !prev);
-  }, []);
+  useEffect(() => {
+    if (audio) {
+      audio.addEventListener("ended", () => {
+        setIsPlaying(false);
+        console.log("ended");
+      });
+    }
+  }, [audio]);
 
   useEffect(() => {
     audio.pause();
@@ -29,12 +42,20 @@ function MusicDetail(props) {
     audio.src = like.track.preview_url;
     audio.load();
     audio.play();
+    setIsPlaying(true);
 
     return () => {
       audio.pause();
       audio.src = "";
     };
-  }, [props.index]);
+  }, [audio, like.track.preview_url]);
+
+  if (audio.current) {
+    audio.current.addEventListener("ended", () => {
+      setIsPlaying(false);
+      console.log("ended");
+    });
+  }
 
   return (
     <>
@@ -69,7 +90,6 @@ function MusicDetail(props) {
           <div>No Image</div>
         )}
         <div className={classes.moreinfo}>
-          <div>{/* <button onClick={playAudio}>play</button> */}</div>
           <div className={classes.detail}>
             <p className={classes["track_name"]}>{like.track.name}</p>
 

@@ -18,6 +18,9 @@
     left : 0%;
     position: fixed;
     z-index: 200;
+    border : 0;
+    outline:0;
+    font-size: 15px;
 }
 
 .menus{

@@ -1,11 +1,10 @@
 import MusicList from "./MusicList";
-import classes from "./window.module.css";
 
 export default function CustomListLogic(props) {
   const { likesList, setLastIntersectingItem, findIndexHandler } = props;
 
   return (
-    <div className={classes.likewindow}>
+    <div>
       <MusicList
         likesList={likesList}
         setLastIntersectingItem={setLastIntersectingItem}

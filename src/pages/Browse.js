@@ -1,13 +1,14 @@
 import CustomPlaylistLogic from "../components/customPlayLists/CustomPlaylistLogic";
 import SpotifyPlayer from "../components/SpotifyPlayer";
 import { Outlet } from "react-router-dom";
-import LikesPage from "./Likes";
-import Column from "../components/customPlayLists/Column";
-import useStore from "../store/MusicStore";
 import classes from "./Browse.module.scss";
-import DndRemoveZone from "../components/Dnd/DndRemoveZone";
+import CustomListCreateButton from "../../src/components/customPlayLists/CustomListCreateButton";
+import { useState } from "react";
+import { useEffect } from "react";
 
 export default function BrowseLayout() {
+  const [playListUrl, setPlayListUrl] = useState(null);
+  useEffect(() => {}, [playListUrl]);
   return (
     <>
       <div className={classes.list}>
@@ -19,8 +20,9 @@ export default function BrowseLayout() {
       </div>
       <div className={classes.custom}>
         <div className={classes.customfixed}>
-          <SpotifyPlayer />
+          <SpotifyPlayer playListUrl={playListUrl} />
           <CustomPlaylistLogic />
+          <CustomListCreateButton setPlayListUrl={setPlayListUrl} />
         </div>
       </div>
     </>
