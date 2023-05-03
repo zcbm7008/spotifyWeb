@@ -52,5 +52,5 @@ main
 separate detailpage logic \
 design and css \
 make test case \ 
-ErorrPage \
+ErrorPage \
 refreshToken
