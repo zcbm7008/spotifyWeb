@@ -46,4 +46,11 @@ make test case \
 
 # 0503 
 ##finished 
-main 
+main
+
+##TODO
+separate detailpage logic \
+design and css \
+make test case \ 
+ErorrPage \
+refreshToken
