@@ -43,3 +43,10 @@ server for auth \
 separate detailpage logic \
 design and css \
 make test case \
+
+7/3
+## Updated
+changed intro UI \
+changed SpotifyPlayer \
+changed CustomPlayListsLogic (prevent Rerender) \
+created Button Template
