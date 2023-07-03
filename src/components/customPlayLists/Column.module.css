@@ -11,6 +11,13 @@
     scrollbar-width: none;
 }
 
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
 .Container::-webkit-scrollbar {
     display: none; /* 크롬, 사파리, 오페라, 엣지 */
 }

@@ -1,0 +1,13 @@
+.center{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    top: 50%;
+}
+
+.title{
+    height: 170px;
+    font-size: 40px;
+    display:flex;
+}

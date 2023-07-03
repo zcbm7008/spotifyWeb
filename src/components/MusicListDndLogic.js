@@ -5,12 +5,16 @@ export default function CustomListLogic(props) {
 
   return (
     <div>
-      <MusicList
-        likesList={likesList}
-        setLastIntersectingItem={setLastIntersectingItem}
-        findIndexHandler={findIndexHandler}
-        key="like_1"
-      />
+      {likesList.length !== 0 ? (
+        <MusicList
+          likesList={likesList}
+          setLastIntersectingItem={setLastIntersectingItem}
+          findIndexHandler={findIndexHandler}
+          key="like_1"
+        />
+      ) : (
+        <div>No Likes found!</div>
+      )}
     </div>
   );
 }

@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import useStore from "../store/MusicStore";
 import { useNavigate, Outlet } from "react-router-dom";
+import classes from "./Browse.module.scss";
+
 function HomePage() {
   const navigate = useNavigate();
   const token = useStore((state) => state.userToken);
@@ -16,7 +18,9 @@ function HomePage() {
   return (
     <>
       <main>
-        <Outlet />
+        <div className={classes.main}>
+          <Outlet />
+        </div>
       </main>
     </>
   );

@@ -1,10 +1,6 @@
 import "./App.css";
 import React from "react";
-import {
-  RouterProvider,
-  createBrowserRouter,
-  useNavigate,
-} from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import ErrorBoundary from "./Util/ErrorBoundary";
 import RootLayout from "./pages/Root";
 import HomePage from "./pages/Home";

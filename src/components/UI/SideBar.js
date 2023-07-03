@@ -1,12 +1,14 @@
 import Browseclasses from "../../pages/Browse.module.scss";
 import classes from "./SideBar.module.css";
 import { useState } from "react";
+import React from "react";
 
 function SideBar(props) {
   const [showSide, setShowSide] = useState(true);
   const toggleSidebar = () => {
     setShowSide((prevState) => !prevState);
   };
+  console.log("sidebar rendered");
   return (
     <div
       className={`${
@@ -28,4 +30,4 @@ function SideBar(props) {
   );
 }
 
-export default SideBar;
+export default React.memo(SideBar);

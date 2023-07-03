@@ -1,8 +1,5 @@
 import axios from "axios";
-import Login from "./Login";
-
-const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET;
+import { Navigate } from "react-router-dom";
 
 const SearchData = async ({ url, params = null, token = null }) => {
   const headers = {
@@ -20,6 +17,7 @@ const SearchData = async ({ url, params = null, token = null }) => {
     window.location.href = "http://localhost:8080/getcode";
     refreshAuthToken();
     console.log(error);
+    Navigate("./error");
   }
 };
 

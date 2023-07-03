@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import SideBar from "../components/UI/SideBar";
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo, useCallback } from "react";
 import { useAddFeaturedList, useAddTopList } from "../Util/UserDataFetcher";
 import useStore from "../store/MusicStore";
 import { useNavigate } from "react-router-dom";
@@ -8,25 +8,26 @@ import DragAndDropHandler from "../components/Dnd/DragAndDropHandler";
 import classes from "./Browse.module.scss";
 
 function RootLayout() {
+  console.log("RootLayout rendered");
   const navigate = useNavigate();
   const { setUserToken } = useStore((state) => state);
 
-  function Logout() {
+  const Logout = useCallback(() => {
     setUserToken("");
     window.localStorage.removeItem("localtoken");
     navigate("/");
-  }
+  }, [setUserToken, navigate]);
 
   const token = useStore((state) => state.userToken);
   const [showSide, setShowSide] = useState(true);
 
-  const onCLickLikes = () => {
+  const onCLickLikes = useCallback(() => {
     navigate("likes");
-  };
+  }, [navigate]);
 
   useEffect(() => {
     onCLickLikes();
-  }, []);
+  }, [onCLickLikes]);
 
   return (
     <>
@@ -50,4 +51,4 @@ function RootLayout() {
   );
 }
 
-export default RootLayout;
+export default memo(RootLayout);

@@ -1,10 +1,9 @@
-import { Draggable, Droppable } from "react-beautiful-dnd";
+import { Droppable } from "react-beautiful-dnd";
 import classes from "./Column.module.css";
-import CustomListItem from "./CustomListItem";
 import Task from "./Task";
 
 export default function Column(props) {
-  console.log(props.id);
+  console.log("column rendered" + props.id);
   return (
     <Droppable
       droppableId={`column -${props.id}`}
@@ -17,6 +16,9 @@ export default function Column(props) {
           ref={provided.innerRef}
           isDraggingOver={snapshot.isDraggingOver}
         >
+          {props.tasks.length === 0 && (
+            <div className={classes.title}>Drag Music Cards here!</div>
+          )}
           {props.tasks.map((task, index) => (
             <Task
               key={`${props.id} ${index}`}

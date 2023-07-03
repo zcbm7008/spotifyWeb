@@ -1,7 +1,6 @@
 import { createPlayList } from "../../Util/SearchData";
 import useStore from "../../store/MusicStore";
-import classes from "./CustomListCreateButton.module.css";
-import { Suspense } from "react";
+import MyButton from "../UI/MyButton";
 
 export default function CustomListCreateButton(props) {
   const token = useStore((state) => state.userToken);
@@ -23,8 +22,8 @@ export default function CustomListCreateButton(props) {
   }
 
   return (
-    <button className={classes.button} onClick={onClickHandler}>
-      . Create Playlist
-    </button>
+    <MyButton width={"500px"} marginTop={"15px"} onClick={onClickHandler}>
+      Create Playlist
+    </MyButton>
   );
 }

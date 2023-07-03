@@ -6,7 +6,6 @@ import ItemBar from "../UI/ItemBar";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 
 export default function CustomPlayLists(props) {
-  const customList = useStore((state) => state.customMusicPlayList);
   return (
     <Draggable draggableId={props.id}>
       {(provided) => (

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import useStore from "../store/MusicStore";
 import { useNavigate } from "react-router-dom";
-
+import classes from "./Login.module.css";
+import MyButton from "../components/UI/MyButton";
 function Login() {
   const navigate = useNavigate();
   const [token, setToken] = useState("");
@@ -20,16 +21,22 @@ function Login() {
     }
   }, [token]);
   return (
-    <>
-      <h2>Login</h2>
-      {!token && <h2>Please Login</h2>}
+    <div className={classes.center}>
+      <div className={classes.title}>
+        <h2>Spotify PlayLists</h2>
+      </div>
+      {/* {!token && (
+        <div className={classes.phrase}>
+          <h2>Please Login</h2>
+        </div>
+      )} */}
 
       {!token ? (
-        <button onClick={onClickHandler}>Login to spotify</button>
+        <MyButton onClick={onClickHandler}>Login to spotify</MyButton>
       ) : (
         <button>already Logiined</button>
       )}
-    </>
+    </div>
   );
 }
 
