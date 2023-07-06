@@ -3,12 +3,19 @@
     height : 500px;
     width : 500px;
     z-index : 50;
-    border : 2px solid dimgray;
-    color : black;
-    border-radius: 5px;
-    box-shadow: 1px 2px 3px 1px rgba(20,20,20,0.4); 
+    border : 1px solid;
+    background-color : rgba(18,18,18,1);
+    border-radius: 10px;
     -ms-overflow-style: none; /* 인터넷 익스플로러 */
     scrollbar-width: none;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    color : dimgray;
+}
+
+.Container:hover{
+    background-color : rgba(141, 133, 133, 0.1);
+    color : rgba(194, 179, 179, 0.5);
+
 }
 
 .title {
@@ -16,6 +23,8 @@
     justify-content: center;
     align-items: center;
     height: 100%;
+    font-size: 30px;
+
   }
 
 .Container::-webkit-scrollbar {

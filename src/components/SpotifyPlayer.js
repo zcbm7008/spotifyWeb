@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import classes from "./SpotifyPlayer.module.css";
 
 export default function SpotifyPlayer(props) {

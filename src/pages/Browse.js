@@ -11,17 +11,22 @@ export default function BrowseLayout() {
   useEffect(() => {}, [playListUrl]);
   return (
     <>
-      <div className={classes.list}>
+      <div className={classes.contents}>
         <div className={classes.nav}>
-          <h1 className={classes.nav_menu}>Likes</h1>
-          <Outlet />
+          <h1 className={classes.nav_menu}>좋아요 표시한 곡</h1>
         </div>
-      </div>
-      <div className={classes.custom}>
-        <div className={classes.customfixed}>
-          <SpotifyPlayer playListUrl={playListUrl} />
-          <CustomPlaylistLogic />
-          <CustomListCreateButton setPlayListUrl={setPlayListUrl} />
+        <div className={classes.contents_inside}>
+          <div className={classes.list}>
+            <Outlet />
+          </div>
+
+          <div className={classes.custom}>
+            <div className={classes.customfixed}>
+              <SpotifyPlayer playListUrl={playListUrl} />
+              <CustomPlaylistLogic />
+              <CustomListCreateButton setPlayListUrl={setPlayListUrl} />
+            </div>
+          </div>
         </div>
       </div>
     </>

@@ -1,7 +1,5 @@
 import useStore from "../../store/MusicStore";
 import Column from "./Column";
-import { useEffect } from "react";
-import SearchData from "../../Util/SearchData";
 import React from "react";
 function CustomPlaylistLogic(props) {
   // const userToken = useStore((state) => state.userToken);

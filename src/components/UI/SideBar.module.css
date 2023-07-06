@@ -3,8 +3,7 @@
     top: 0;
     left: 0;
     bottom: 0;
-    width: 12%;
-    background-color: rgb(0, 0, 0);
+    background-color: #181818;
     transition: transform 1s;
     transform: translateX(0);
 }
@@ -24,7 +23,7 @@
 }
 
 .menus{
-    margin-left: 1.8rem;
+    margin-left: 2.1rem;
     font-size: 25px;
     position: fixed;
     cursor:pointer;

@@ -1,10 +1,12 @@
-$sidebar_width : 14%;
+$sidebar_width : 13%;
+$list_width : 70%;
+$nav_height : 11%;
 
 .browse {
     width : 100%;
     height : 100vh;
     display: flex;
-    background: white;
+    background: black;
     background-attachment: fixed;
 }
 
@@ -15,13 +17,18 @@ $sidebar_width : 14%;
 }
 
 .side_bar{
-    position: relative;
+    flex: 0 0 auto;
+    overflow-y: auto;
+    position : fixed;
+    display: flex;
     top: 0;
     left : 0;
     width : $sidebar_width;
     z-index: 100;
+    height : 100vh;
     overflow: hidden;
     transition: width 1s;
+    background-color: rgba(0, 0, 0,0.8);
     
 }
 
@@ -35,43 +42,64 @@ $sidebar_width : 14%;
     transition: width 1s;
 }
 
+.nav {
+    position: relative;
+    width : 100%;
+    height : $nav_height;
+    margin-top : 0;
+    top:0;
+    margin-left : 3px;
+
+}
+
+.contents{
+    flex:1;
+    margin-left: $sidebar_width;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, #1DB954 , #191414 8%);
+    height : 100%;
+    overflow:auto;
+}
+
+.contents_inside{
+    flex:1;
+    // margin-left: $sidebar_width;
+    display: flex;
+}
+
 .list{
     position: relative;
     top : 0;
     height : 100vh;
-    width : 50%;
+    width : $list_width;
     flex-basis: 80rem;
 
 }
 
 .custom{
     position: relative;
+    overflow-y:auto;
     width : 30%;
     height : 100%;
     z-index: 100;
 }
 
 .customfixed{
- position: fixed;
- top : 0.3%;
+    left : $list_width;
+    position: fixed;
+    top : $nav_height;
 }
 
-.nav {
-    position: relative;
-    width : 100%;
-    margin-top : 0;
-    top:0;
-    margin-left: 1rem;
 
-}
 
 .nav_menu{
     margin-left: 17px;
-    font-size : 50px;
-    font-weight: 300;
+    font-size : 44px;
+    font-weight: 700;
     margin-top: 0;
     margin-bottom: 0px;
-    color : black;
+    color : white;
 }
 
 .list_contents{
@@ -84,3 +112,4 @@ $sidebar_width : 14%;
 .fixed{
     position: fixed;
 }
+

@@ -1,6 +1,6 @@
 import classes from "./MusicItem.module.scss";
 
-import Task from "./customPlayLists/Task";
+import Task from "../customPlayLists/Task";
 
 function MusicItem(props) {
   const { like, index, indexClickHandler } = props;

@@ -5,6 +5,7 @@ import DropItem from "./DropItem";
 const MusicList = forwardRef((props, ref) => {
   let likes = props.likesList;
   const { setLastIntersectingItem } = props;
+
   React.useImperativeHandle(ref, () => ({
     setLastIntersectingItem,
   }));

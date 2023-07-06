@@ -1,8 +1,7 @@
 import classes from "./MusicDetail.module.css";
-import useStore from "../store/MusicStore";
-import Controls from "./Controls";
+import useStore from "../../store/MusicStore";
 import { useCallback, useEffect, useState, useRef } from "react";
-
+import Portal from "../Portal";
 function MusicDetail(props) {
   const [toggle, setToggle] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -26,6 +25,15 @@ function MusicDetail(props) {
     },
     [audio, isPlaying]
   );
+
+  const Controls = (props) => {
+    console.log(props.isPlaying);
+    return (
+      <button onClick={props.controlMusic} className={classes.button}>
+        {props.isPlaying ? "■" : "▶"}
+      </button>
+    );
+  };
 
   useEffect(() => {
     if (audio) {
@@ -57,8 +65,9 @@ function MusicDetail(props) {
     });
   }
 
+  console.log(like.track);
   return (
-    <>
+    <Portal>
       <div className={!toggle ? classes.info : classes.toggled_info}>
         <div>
           <button onClick={props.onClose} className={classes.exit}>
@@ -91,16 +100,39 @@ function MusicDetail(props) {
         )}
         <div className={classes.moreinfo}>
           <div className={classes.detail}>
-            <p className={classes["track_name"]}>{like.track.name}</p>
+            <a
+              className={classes.a}
+              href={like.track.external_urls["spotify"]}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <p className={classes["track_name"]}>
+                <span className={classes.hoverable}>{like.track.name}</span>
+              </p>
+            </a>
 
             <p className={classes["artist_name"]}>
-              {like.track.artists.map((artist) => artist.name).join(", ")}
+              {like.track.artists.map((artist, index) => (
+                <>
+                  {console.log(artist)}
+                  {index > 0 && ", "}
+                  <a
+                    className={classes.a}
+                    href={artist.external_urls.spotify}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <span className={classes.hoverable}>{artist.name}</span>
+                  </a>
+                </>
+              ))}
             </p>
+
             <Controls controlMusic={controlAudio} isPlaying={isPlaying} />
           </div>
         </div>
       </div>
-    </>
+    </Portal>
   );
 }
 

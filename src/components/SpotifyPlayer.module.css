@@ -4,12 +4,12 @@
 }
 
 .skeleton {
-height: 160px;
+ height: 160px;
  width: 500px;
  margin-bottom : 17px; 
-border : 1px solid black;
-border-radius: 5px;
-color : dimgray;
+border : 1px solid ;
+border-radius: 10px;
+background-color : #181818;
 text-align: center;
 font-size: 2rem;
 }
@@ -19,4 +19,5 @@ font-size: 2rem;
     justify-content: center;
     align-items: center;
     height: 100%;
+    color : dimgray;
   }
