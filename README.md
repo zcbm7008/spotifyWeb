@@ -50,3 +50,7 @@ changed intro UI \
 changed SpotifyPlayer \
 changed CustomPlayListsLogic (prevent Rerender) \
 created Button Template
+
+## 7/6 Updated
+changed Music Detailed UI \
+created music-detail-portal \
